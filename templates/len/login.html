@@ -1,0 +1,28 @@
+{% extends 'len/layout.html' %}
+
+{% block title %}
+    Вход в аккаунт
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-5">Вход</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <p>
+                <label class="form-label">{{ field.label }}: </label>
+                {{ field }}
+            </p>
+            <div class="form-error"> {{ field.non_field_errors }}</div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-outline-secondary mt-2">Войти</button>
+
+        {% for message  in messages %}
+            <p> {{ message }}</p>
+        {% endfor %}
+
+    </form>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'len/layout.html' %}
+
+{% block title %}
+    Регистрация
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-5">Регистрация</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <p>
+                <label class="form-label">{{ field.label }}: </label>
+                {{ field }}
+            </p>
+            <div class="form-error"> {{ field.errors }}</div>
+        {% endfor %}
+
+        {{ form.errors }}
+
+        <button type="submit" class="btn btn-outline-secondary mt-2">Регистрация</button>
+
+    </form>
+
+{% endblock %}

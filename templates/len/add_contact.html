@@ -1,0 +1,61 @@
+{% extends 'len/layout.html' %}
+
+{% block title %}
+    Новый контакт
+{% endblock %}
+
+{% block content %}
+    <h1>Добавление нового контакта</h1>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {#        <a href="{% url 'clients_list' %}" type="button" class="btn btn-secondary mt-4">Вернуться к созданию клиента</a>#}
+
+        <div class="form-group m-3">
+            <label> Фамилия: </label>
+            {{ form.last_name }}
+
+            <label> Имя: </label>
+            {{ form.first_name }}
+
+            <label> Отчество: </label>
+            {{ form.middle_name }}
+        </div>
+
+        <div class="form-group m-3">
+            <label> Номер телефона: </label>
+            {{ form.phone }}
+        </div>
+
+        <div class="form-group m-3">
+            <label> День рождения: </label>
+            {{ form.birthday }}
+        </div>
+
+{#        <div class=" form-group m-3">#}
+{#            <label> Тип контактного лица: </label>#}
+{#            {{ type_form.contacts_type }}#}
+{#        </div>#}
+
+        <div class="form-check m-3">
+            {{ form.ban_on_spam }}
+            <label class="form-check-label"> Не присылать рассылку </label>
+        </div>
+        <button type="submit" class="btn btn-secondary mt-4">Добавить контакт</button>
+    </form>
+
+{#    <form method="POST" action="" enctype="multipart/form-data">#}
+{#        {% csrf_token %}#}
+{##}
+{#        <div class=" form-group m-3">#}
+{#            <label> Тип контактного лица: </label>#}
+{#            {{ type_form.contacts_type }}#}
+{#        </div>#}
+{##}
+{#        <button type="submit" class="btn btn-secondary mt-4">Привязать к клиенту</button>#}
+{#    </form>#}
+
+    <div>
+        <a href="{% url 'client' pk %}" type="button" class="btn btn-dark mt-4">Вернуться к клиенту</a>
+    </div>
+{% endblock %}

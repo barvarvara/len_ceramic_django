@@ -1,0 +1,60 @@
+{% extends 'len/layout.html' %}
+
+{% block title %}
+    {{ client.name }}
+{% endblock %}
+
+
+{% block page_name %}
+    Контактные данные
+    <div>
+        <i>{{ contact.last_name }}</i>
+        <i>{{ contact.get_initials }}</i>
+    </div>
+{% endblock %}
+
+
+
+{% block content %}
+    <form class="mb-5 mt-3">
+        <a href="{% url 'client' contact.client.id %}" type="button" class="btn btn-light mt-4">Клиент</a>
+
+        <div class="form-group m-3">
+            <label> ФИО: </label>
+            <input name="last_name" class="form-control mb-2" type="text" value="{{ contact.last_name }}">
+            <input name="first_name" class="form-control mb-2" type="text" value="{{ contact.first_name }}">
+            <input name="middle_name" class="form-control" type="text" value="{{ contact.middle_name }}">
+        </div>
+
+        <div class="form-group m-3">
+            <label> Номер телефона: </label>
+            <input type="email" class="form-control" value="{{ contact.phone }}">
+        </div>
+
+        {% if contact.birthday %}
+            <div class="form-group m-3">
+                <label> День рождения: </label>
+                <input name="date" class="form-control" type="text" value="{{ contact.birthday }}">
+            </div>
+        {% endif %}
+
+        <div>
+            {% if contact.ban_on_spam %}
+                <b>Рассылка блокирована</b>
+            {% endif %}
+        </div>
+
+        {#        <div class="form-group m-3">#}
+        {#            <label> День рождения: </label>#}
+        {#            <input type="date" class="form-control" value="{{ contact.birthday }}">#}
+        {#        </div>#}
+
+
+        <div>
+            <a href="{% url 'client' pk %}" type="button" class="btn btn-dark mt-4">Вернуться</a>
+        </div>
+
+    </form>
+
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'len/layout.html' %}
+
+{% block title %}
+    Новый контакт
+{% endblock %}
+
+{% block content %}
+    <h1>Добавление нового контакта</h1>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group m-3">
+            <label> Тип контактного лица: </label>
+            {{ type_form.contacts_type }}
+        </div>
+
+        <button type="submit" class="btn btn-secondary mt-4">Добавить</button>
+
+        <div>
+            <a href="{% url 'client' pk %}" type="button" class="btn btn-dark mt-4">Вернуться к клиенту</a>
+        </div>
+
+    </form>
+{% endblock %}

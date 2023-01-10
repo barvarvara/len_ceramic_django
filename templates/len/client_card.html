@@ -1,0 +1,148 @@
+{% extends 'len/layout.html' %}
+
+{% block title %}
+    {{ client.name }}
+{% endblock %}
+
+
+{% block page_name %}
+    Карточка клиента <i>{{ client.name }}</i>
+{% endblock %}
+
+{% block content %}
+    <form method="GET" class="mb-5 mt-5">
+        <div class="form-group m-3">
+            <label> Псевдоним: </label>
+            <input name="name" class="form-control" type="text" value="{{ client.name }}">
+        </div>
+
+        <div class="form-group m-3">
+            <label> ФИО: </label>
+            <input name="fcs" class="form-control mb-2" type="text" value="{{ client.fcs }}">
+        </div>
+
+        {#        <div class="form-group m-3">#}
+        {#            <label> Номер телефона: </label>#}
+        {#            <input type="email" class="form-control" value="{{ contact.phone }}">#}
+        {#        </div>#}
+
+        {#    ДАТЫ НЕ ОТОБРАЖАЮТСЯ#}
+        {#        <div class="form-group m-3">#}
+        {#            <label> День рождения: </label>#}
+        {#            <input type="date" class="form-control" value="{{ contact.birthday }}">#}
+        {#        </div>#}
+
+        <div class="form-group m-3">
+            <label> Статус клиента: </label>
+            <label>
+                <select name="status" class="form-control">
+                    <option value='{{ client.client_status.id }}'>
+                        {{ client.client_status.name }}
+                    </option>
+
+                    {#                    {% for status in statuses %}#}
+                    {#                        <option value='{{ status.id }}'>#}
+                    {#                            {{ status.name }}#}
+                    {#                        </option>#}
+                    {#                    {% endfor %}#}
+                </select>
+            </label>
+        </div>
+
+
+        <div class="form-group m-3">
+            <label> Тип клиента: </label>
+            <label>
+                <select name="status" class="form-control">
+                    <option value='{{ client.client_type.id }}'>
+                        {{ client.client_type.name }}
+                    </option>
+
+                    {#                    {% for type in types %}#}
+                    {#                        <option value='{{ type.id }}'>#}
+                    {#                            {{ type.name }}#}
+                    {#                        </option>#}
+                    {#                    {% endfor %}#}
+                </select>
+            </label>
+        </div>
+
+        <a href="{% url 'client_upd' pk %}" type="button" class="btn btn-light mt-4">Обновить данные</a>
+        <a href="{% url 'client' pk %}" type="button" class="btn btn-light mt-4">Восстановить</a>
+        <a href="{% url 'client_delete' pk %}" type="button" class="btn btn-secondary mt-4">Удалить клиента</a>
+
+
+        {% if client.contacts %}
+            <div class="mt-5">
+                <h5>Контактные данные клиента: </h5>
+            </div>
+
+            <div class="list-group mt-3">
+
+                <a href="{% url 'contact' client.contacts.id %}"
+                   class="list-group-item list-group-item-action flex-column border border-dark ">
+
+                    <div class="justify-content-between mt-2">
+                        <h6 class="mb-2">{{ client.contacts.get_fcs }}</h6>
+                    </div>
+
+                    <p class="mb-1">{{ client.contacts.phone }}</p>
+                </a>
+            </div>
+        {% endif %}
+
+
+        <div class="list-group mt-3">
+            {% if contacts %}
+                <div class="mt-5">
+                    <h5>Доп. контакты клиента: </h5>
+                </div>
+
+                {% for cont in contacts %}
+                    <a href="{% url 'contact' cont.contacts.id %}"
+                       class="list-group-item list-group-item-action flex-column border border-dark ">
+
+                        <div class="justify-content-between mt-2">
+                            <h6 class="mb-2">{{ cont.contacts.get_fcs }}</h6>
+                        </div>
+
+                        <p class="mb-1">{{ cont.contacts.phone }}</p>
+                        <small>{{ cont.contacts_type.name }}</small>
+                    </a>
+                {% endfor %}
+
+            {% endif %}
+        </div>
+
+        <div>
+{#            {% if not client.contacts %}#}
+{#                <a href="{% url 'contact_new'%}" type="button submit" class="btn btn-light mt-4">Добавить контактные#}
+{#                    данные</a>#}
+{#            {% endif %}#}
+
+            {#    найти контакты по ФИО или номеру телефона#}
+            {#            <a href="{% url 'clients_list' %}" type="button submit" class="btn btn-light mt-4">Найти и привязать#}
+            {#                контакт</a>#}
+            <a href="{% url 'client_new_cont' pk %}" type="button submit" class="btn btn-light mt-4">Добавить контакт</a>
+        </div>
+
+        <div>
+            <a href="{% url 'clients_list' %}" type="button" class="btn btn-dark mt-4">Вернуться</a>
+        </div>
+
+    </form>
+
+{% endblock %}
+
+{#<div class="col">#}
+{#            <div class="card">#}
+{#              <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>#}
+{##}
+{#              <div class="card-body">#}
+{#                <h5 class="card-title">Card title</h5>#}
+{#                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
+{#                <a href="#" class="btn btn-primary">Go somewhere</a>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+

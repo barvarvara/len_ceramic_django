@@ -1,0 +1,96 @@
+{% extends 'len/layout.html' %}
+
+{% block title %}
+    {{ cls.class_type.name }}
+{% endblock %}
+
+{% block page_name %}
+    Информация о занятии
+{% endblock %}
+
+{% block content %}
+    <form method="GET" class="mb-5 mt-5">
+        <div class="form-group m-3">
+            <label> Дата: </label>
+            {#            <input name="date" class="form-control" type="date" value="{{cls.date.year}}-{{cls.date.day}}-{{cls.date.month}}">#}
+            <input name="date" class="form-control" type="text" value="{{ cls.date }}">
+
+        </div>
+
+        <div class="form-group m-3">
+            <label> Время: </label>
+            <input name="time" class="form-control mb-2" type="time" value="{{ cls.time }}">
+        </div>
+
+        {% if clss.comment %}
+            <div class="form-group m-3">
+                <label> Комментарий: </label>
+                <input name="comment" class="form-control mb-2" type="text" value="{{ clss.comment }}">
+            </div>
+        {% endif %}
+
+        <div class="form-group m-3">
+            <label> Тип занятия: </label>
+            <label>
+                <select name="status" class="form-control">
+                    <option value='{{ cls.class_type.id }}'>
+                        {{ cls.class_type.name }}
+                    </option>
+                </select>
+            </label>
+        </div>
+
+        {% if cls.next_date %}
+            <div class="form-group m-3">
+                <label> Дата следующего занятие: </label>
+                <input name="date" class="form-control" type="text" value="{{ cls.next_date }}">
+            </div>
+        {% endif %}
+
+        {#        <a href="{% url 'client_upd' pk %}" type="button" class="btn btn-light mt-4">Обновить данные</a>#}
+        <a href="{% url 'class' pk %}" type="button" class="btn btn-light mt-4">Восстановить</a>
+
+        {#        <a href="{% url 'client_delete' pk %}" type="button" class="btn btn-secondary mt-4">Удалить занятие</a>#}
+
+
+        <div class="list-group mt-3">
+            {% if guests %}
+                <div class="mt-5">
+                    <h5> Гости, лепившие на занятии: </h5>
+                </div>
+
+                {% for guest in guests %}
+                    <a href="{% url 'client' guest.client.id %}"
+                       class="list-group-item list-group-item-action flex-column border border-dark ">
+
+                        <div class="d-flex w-100 justify-content-between mt-4">
+                            <h5 class="mb-2">{{ guest.client.name }}</h5>
+                        </div>
+
+                        <p class="mb-1">{{ guest.client.get_fcs }}</p>
+                        <small>{{ guest.client.client_status.name }}</small>
+                    </a>
+                {% endfor %}
+
+            {% endif %}
+        </div>
+
+        {#        <div>#}
+        {#            {% if not cls.contacts %}#}
+        {#                <a href="{% url 'contact_new' %}" type="button submit" class="btn btn-light mt-4">Добавить контактные#}
+        {#                    данные</a>#}
+        {#            {% endif %}#}
+        {##}
+        {#    найти контакты по ФИО или номеру телефона#}
+        {#            <a href="{% url 'clients_list' %}" type="button submit" class="btn btn-light mt-4">Найти и привязать#}
+        {#                контакт</a>#}
+        {#            <a href="{% url 'clients_list' %}" type="button submit" class="btn btn-light mt-4">Добавить контакт</a>#}
+        {#        </div>#}
+
+        <div>
+            <a href="{% url 'classes_list' %}" type="button" class="btn btn-dark mt-4">Вернуться</a>
+        </div>
+
+    </form>
+{% endblock %}
+

@@ -1,0 +1,56 @@
+[
+  {
+    "model": "len.lastmonthguests",
+    "pk": 55,
+    "fields": {
+      "guest_name": "Галя",
+      "class_date": "2022-12-03",
+      "class_time": "10:00:00"
+    }
+  },
+  {
+    "model": "len.lastmonthguests",
+    "pk": 265,
+    "fields": {
+      "guest_name": "Настя",
+      "class_date": "2022-12-03",
+      "class_time": "10:00:00"
+    }
+  },
+  {
+    "model": "len.lastmonthguests",
+    "pk": 417,
+    "fields": {
+      "guest_name": "Маша",
+      "class_date": "2022-12-05",
+      "class_time": "18:00:00"
+    }
+  },
+  {
+    "model": "len.lastmonthguests",
+    "pk": 487,
+    "fields": {
+      "guest_name": "Миша",
+      "class_date": "2022-12-05",
+      "class_time": "18:00:00"
+    }
+  },
+  {
+    "model": "len.lastmonthguests",
+    "pk": 528,
+    "fields": {
+      "guest_name": "Маша",
+      "class_date": "2022-12-10",
+      "class_time": "18:00:00"
+    }
+  },
+  {
+    "model": "len.lastmonthguests",
+    "pk": 918,
+    "fields": {
+      "guest_name": "Леночка",
+      "class_date": "2022-12-10",
+      "class_time": "18:00:00"
+    }
+  }
+]

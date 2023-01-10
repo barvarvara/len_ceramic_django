@@ -1,0 +1,46 @@
+{% extends 'len/layout.html' %}
+
+{% block title %}
+    Домашняя страница
+{% endblock %}
+
+{% block page_name %}
+    Гончарная Студия "Лён"
+{% endblock %}
+
+{% block content %}
+    <a class="list-group list-group-item-action list-group-flush mt-4 border-bottom">
+        <a href="{% url 'clients_list' %}"
+           class="list-group-item list-group-item-action ">
+            <div class="d-flex w-100 justify-content-between mt-4">
+                <h5>Клиенты</h5>
+            </div>
+        </a>
+
+        <a href="{% url 'classes_list' %}"
+           class="list-group-item list-group-item-action flex-column">
+
+            <div class="d-flex w-100 justify-content-between mt-4">
+                <h5>Занятия</h5>
+            </div>
+        </a>
+
+        {#        <a href="{% url 'clients_list' %}"#}
+        {#           class="list-group-item list-group-item-action flex-column">#}
+        {##}
+        {#            <div class="d-flex w-100 justify-content-between mt-4">#}
+        {#                <h5>Сертификаты</h5>#}
+        {#            </div>#}
+        {#        </a>#}
+
+        <a href="{% url 'clients_list' %}"
+           class="list-group-item list-group-item-action flex-column">
+
+            <div class="d-flex w-100 justify-content-between mt-4">
+                <h5>Изделия</h5>
+            </div>
+        </a>
+
+
+    </a>
+{% endblock %}
